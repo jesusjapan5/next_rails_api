@@ -6,25 +6,29 @@ type Query {
     getImage(id: ID!): Image
 }
 
+# 課題：画像送る際の型をどうするか
 type Mutation {
-    createUser()
-    updateUser()
-    deleteUser()
-    createImage()
-    deleteImage()
-    createComment()
-    deleteCOmment()
-    createLike()
-    deleteLike()
+    createUser(email: String!, password: String!): User!
+    updateAvator(id: ID! ,image: String!): User!
+    updateProfile(id: ID!, description: String, name: String): User!
+    updatePassword(id: ID!, password:String!, oldPassword:String!): Boolean!
+    deleteUser(id: ID!): Boolean!
+    createImage(keyword: String!): Image!
+    updateImageComment(id: ID!, description: String): Image
+    deleteImage(id: ID!): Boolean!
+    createComment(id: ID!, description: String): Comment!
+    deleteComment(id: ID!, description: String): Boolean!
+    createLike(id: ID!, user:User!)
+    deleteLike(id: ID!)
 }
 
 type User {
     id: ID!
-    name: String!
+    name: String
     email: String!
     password: String!
     avator: String
-    descrioption: String
+    description: String
 }
 
 type Image {
@@ -39,7 +43,7 @@ type Image {
 
 type Comment {
     id: ID!
-    descrioption: String!
+    description: String!
 }
 
 type Like {
