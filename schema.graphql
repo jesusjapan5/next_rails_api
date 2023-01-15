@@ -1,0 +1,48 @@
+type Query {
+    login(email: String!, password: String!): User
+    getUser(id: ID!): User
+    getImages: [Image]
+    getImagesByKeyword(query: String): [Image] 
+    getImage(id: ID!): Image
+}
+
+type Mutation {
+    createUser()
+    updateUser()
+    deleteUser()
+    createImage()
+    deleteImage()
+    createComment()
+    deleteCOmment()
+    createLike()
+    deleteLike()
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+    avator: String
+    descrioption: String
+}
+
+type Image {
+    id: ID!
+    author: User!
+    url: String!
+    comment: [comment]
+    like: [like]
+    description: String
+    keyword: String!
+}
+
+type Comment {
+    id: ID!
+    descrioption: String!
+}
+
+type Like {
+    id: ID!
+    user: User!
+}
